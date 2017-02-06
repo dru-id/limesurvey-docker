@@ -1,15 +1,17 @@
 version: '2'
 
 services:
-
   limesurvey:
-    image: acspri/limesurvey
+    image: docker.dru-id.com:5000/druid/limesurvey:2.62
     ports:
       - 8082:80
-    environment:
-      LIMESURVEY_DB_PASSWORD: example
-
-  mysql:
-    image: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: example
+    env_file: limesurvey.env
+    links:
+      - db:limesurvey.db
+    # command: ["/usr/local/bin/wait-for-mysql.sh"]
+    volumes:
+      - ./src/limesurvey:/var/www/html
+  db:
+    image: mysql:5.7
+    env_file: limesurvey.env
+      

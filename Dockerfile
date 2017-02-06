@@ -1,6 +1,6 @@
 FROM php:5.6-apache
 
-ENV DOWNLOAD_URL https://www.limesurvey.org/stable-release?download=1984:limesurvey2620%20170124targz
+ENV DOWNLOAD_URL https://www.limesurvey.org/stable-release?download=1994:limesurvey2622%20170203targz
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libc-client-dev libfreetype6-dev libmcrypt-dev libpng12-dev libjpeg-dev libldap2-dev zlib1g-dev libkrb5-dev && rm -rf /var/lib/apt/lists/* \
@@ -44,6 +44,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/uploads.ini
 
 COPY docker-entrypoint.sh /usr/local/bin/
+COPY wait-for-mysql.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 
 # ENTRYPOINT resets CMD
