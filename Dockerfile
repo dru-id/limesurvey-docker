@@ -1,6 +1,6 @@
 FROM php:5.6-apache
 
-ENV DOWNLOAD_URL https://www.limesurvey.org/stable-release?download=1994:limesurvey2622%20170203targz
+ENV DOWNLOAD_URL https://www.limesurvey.org/stable-release?download=2009:limesurvey2640%20170307targz
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libc-client-dev libfreetype6-dev libmcrypt-dev libpng12-dev libjpeg-dev libldap2-dev zlib1g-dev libkrb5-dev && rm -rf /var/lib/apt/lists/* \
